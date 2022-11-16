@@ -6,27 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 2b32b2cd6e58a1a4691fee8bafd8fa3e
   - enabled: 1
-    path: Assets/Scenes/Scenes/TurnState.unity
+    path: Assets/Scenes/TurnState.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Scenes/Attack_Fire.unity
+    path: Assets/Scenes/Attack_Fire.unity
     guid: bb4393240f484574993778cb625cc1ec
   - enabled: 1
-    path: Assets/Scenes/Scenes/Attack_Water.unity
+    path: Assets/Scenes/Attack_Water.unity
     guid: 18edc54b01bfc184181e397c2905043a
   - enabled: 1
-    path: Assets/Scenes/Scenes/Attack_Earth.unity
+    path: Assets/Scenes/Attack_Earth.unity
     guid: 81411519dae814745863827c28089c58
   - enabled: 1
-    path: Assets/Scenes/Scenes/Attack_Air.unity
+    path: Assets/Scenes/Attack_Air.unity
     guid: 3e2d22b6d86d57b4190edd4e6ac9d514
   - enabled: 1
-    path: Assets/Scenes/Scenes/Block.unity
+    path: Assets/Scenes/Block.unity
     guid: 4b72fb4deb34341488b93913631f0b78
   - enabled: 1
-    path: Assets/Scenes/Scenes/Run.unity
+    path: Assets/Scenes/Run.unity
     guid: da36878d897d9e049991a3c49eceafd3
   m_configObjects: {}
