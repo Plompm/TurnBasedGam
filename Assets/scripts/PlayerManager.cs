@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     playerAction _givenState;
+    GameObject _infoManager;
 
     void Start()
     {
         _givenState = GameObject.Find("infoManager").GetComponent<battleInfo>().PlayerInput;
-        print(_givenState);
+        _infoManager = GameObject.Find("infoManager");
+
         if (_givenState == playerAction.FireAttack)
             gameObject.AddComponent<fireState>();
         if (_givenState == playerAction.AirAttack)
@@ -33,6 +35,7 @@ public class PlayerManager : MonoBehaviour
 
     public void takeDamage(float damageDealt)
     {
-
+        print("oww");
+        _infoManager.GetComponent<battleInfo>().PlayerHealth -= damageDealt;
     }
 }

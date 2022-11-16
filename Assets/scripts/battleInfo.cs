@@ -29,7 +29,9 @@ public class battleInfo : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         _checkScene = SceneManager.GetActiveScene();
-    }
+        EnemyHealth = 100;
+        PlayerHealth = 100;
+}
 
     private void Update()
     {
@@ -37,5 +39,19 @@ public class battleInfo : MonoBehaviour
         {
             _checkScene = SceneManager.GetActiveScene();
         }
+        if (EnemyHealth <= 0)
+        {
+            EnemyHealth = 100;
+            PlayerHealth = 100;
+            gameObject.GetComponent<loadWin>().winLoad();
+        }
+        if (PlayerHealth <= 0)
+        {
+            EnemyHealth = 100;
+            PlayerHealth = 100;
+            gameObject.GetComponent<loadLose>().loseLoad();
+        }
+
     }
+
 }
