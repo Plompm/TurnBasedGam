@@ -20,12 +20,15 @@ public class GameStateController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void loadLevel_1()
+    private void Update()
     {
-        SceneManager.LoadScene("level_01");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            mainMenuLoad();
+        }
     }
 
-    public void loadMainMenu()
+    void mainMenuLoad()
     {
         SceneManager.LoadScene("MainMenu");
     }
