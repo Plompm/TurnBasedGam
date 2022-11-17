@@ -18,6 +18,15 @@ public class earthState : MonoBehaviour
         // Update is called once per frame
         void Update()
     {
-        
+        //primary Attack
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
+        //secondary Attack
+        if (Input.GetMouseButtonDown(1))
+        {
+
+        }
     }
 }
