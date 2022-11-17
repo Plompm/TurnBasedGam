@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     playerAction _givenState;
     GameObject _infoManager;
 
+    [SerializeField] public GameObject FlameThrower;
+
     void Start()
     {
         _givenState = GameObject.Find("infoManager").GetComponent<battleInfo>().PlayerInput;
@@ -23,8 +25,6 @@ public class PlayerManager : MonoBehaviour
             gameObject.AddComponent<waterState>();
         if (_givenState == playerAction.Run)
             gameObject.AddComponent<RunState>();
-        if (_givenState == playerAction.Block)
-            gameObject.AddComponent<BlockState>();
     }
 
 

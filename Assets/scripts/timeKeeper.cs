@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class timeKeeper : MonoBehaviour
 {
+    /*
     [SerializeField] GameObject _UITimer;
     float _time;
 
@@ -25,4 +26,5 @@ public class timeKeeper : MonoBehaviour
             _UITimer.GetComponent<Image>().fillAmount = Mathf.Clamp01((_time - Time.time)/10);
         }
     }
+    */
 }

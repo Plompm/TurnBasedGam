@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class airState : MonoBehaviour
 {
     Image[] _crosshairs;
+    GameObject FlameThrower;
 
     void Start()
     {
@@ -19,6 +20,15 @@ public class airState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //primary Attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+        }
+        //secondary Attack
+        if (Input.GetMouseButtonDown(1))
+        {
+
+        }
     }
 }
