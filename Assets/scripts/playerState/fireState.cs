@@ -7,18 +7,25 @@ public class fireState : MonoBehaviour
 {
     playerSetup _playerSetup;
 
+    GameObject _mainAbilityUI;
+    GameObject _secondaryAbilityUI;
     GameObject[] _UItoChange;
+
     GameObject _flameThrowerRef;
     GameObject _flameThrower;
     Transform _spawnTransform;
     ParticleSystem _particleSystemFlameThrower;
 
-    GameObject _mainAbilityUI;
-    GameObject _secondaryAbilityUI;
-
     float maxFlameThrowerCharge = 1;
     float curFlameThrowerCharge;
+    float _delayTimer;
+    bool _delayFlamerOn;
     bool _flameThrowerOn;
+
+    GameObject _FireBallRef;
+    
+    float _curFireBallRechargeTime;
+    float _fireBallRechargeTime = 2;
 
     private void Awake()
     {
@@ -27,6 +34,7 @@ public class fireState : MonoBehaviour
 
     void Start()
     {
+        _curFireBallRechargeTime = _fireBallRechargeTime;
         curFlameThrowerCharge = maxFlameThrowerCharge;
         _mainAbilityUI = _playerSetup.UIMainAbility;
         _secondaryAbilityUI = _playerSetup.UISecondaryAbility;
@@ -40,6 +48,7 @@ public class fireState : MonoBehaviour
         }
         
         _flameThrowerRef = _playerSetup.FlameThrower;
+        _FireBallRef = _playerSetup.FireBall;
     }
 
     // Update is called once per frame
@@ -48,45 +57,79 @@ public class fireState : MonoBehaviour
         //primary Attack
         flamethrowerFunc();
         //secondary Attack
-        if (Input.GetMouseButtonDown(1))
-        {
-           
-        }
+        fireBallFunc();
 
         UIUpdate();
     }
 
     void flamethrowerFunc()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_delayFlamerOn == false)
         {
-            if (_flameThrower == null)
+            if (Input.GetMouseButtonDown(0))
             {
-                _flameThrower = Instantiate(_flameThrowerRef, _spawnTransform.position, _spawnTransform.rotation, _spawnTransform);
-                _particleSystemFlameThrower = _flameThrower.GetComponent<ParticleSystem>();
+                if (_flameThrower == null)
+                {
+                    _flameThrower = Instantiate(_flameThrowerRef, _spawnTransform.position, _spawnTransform.rotation, _spawnTransform);
+                    _particleSystemFlameThrower = _flameThrower.GetComponent<ParticleSystem>();
+                }
+
+                _flameThrower.GetComponent<CapsuleCollider>().enabled = true;
+                _particleSystemFlameThrower.Play();
+                _flameThrowerOn = true;
             }
-            _flameThrower.GetComponent<CapsuleCollider>().enabled = true;
-            _particleSystemFlameThrower.Play();
+            if (Input.GetMouseButtonUp(0))
+            {
+                _delayFlamerOn = true;
+                _delayTimer = Time.time + 1;
+                _flameThrowerOn = false;
+                _flameThrower.GetComponent<CapsuleCollider>().enabled = false;
+                _particleSystemFlameThrower.Stop(true);
+            }
 
-            _flameThrowerOn = true;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            _flameThrowerOn = false;
-            _flameThrower.GetComponent<CapsuleCollider>().enabled = false;
-            _particleSystemFlameThrower.Stop(true);
+            if (_flameThrowerOn == false)
+            {
+                curFlameThrowerCharge += Time.deltaTime;
+                curFlameThrowerCharge = Mathf.Clamp(curFlameThrowerCharge, 0, maxFlameThrowerCharge);
+
+            }
+            if (_flameThrowerOn == true)
+            {
+                curFlameThrowerCharge -= Time.deltaTime;
+                curFlameThrowerCharge = Mathf.Clamp(curFlameThrowerCharge, 0, maxFlameThrowerCharge);
+            }
+
+            if (curFlameThrowerCharge <= 0)
+            {
+                _delayFlamerOn = true;
+                _delayTimer = Time.time + 1;
+                _flameThrowerOn = false;
+                _flameThrower.GetComponent<CapsuleCollider>().enabled = false;
+                _particleSystemFlameThrower.Stop(true);
+            }
         }
 
-        if (_flameThrowerOn == false)
+        if (_delayFlamerOn == true && _delayTimer <= Time.time)
         {
-            curFlameThrowerCharge += Time.deltaTime;
-            curFlameThrowerCharge = Mathf.Clamp(curFlameThrowerCharge, 0, maxFlameThrowerCharge);
-
+            _delayFlamerOn = false;
         }
-        if (_flameThrowerOn == true)
+
+    }
+
+    void fireBallFunc()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
-            curFlameThrowerCharge -= Time.deltaTime;
-            curFlameThrowerCharge = Mathf.Clamp(curFlameThrowerCharge, 0, maxFlameThrowerCharge);
+            if (_curFireBallRechargeTime >= _fireBallRechargeTime)
+            {
+                Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
+                _curFireBallRechargeTime = 0;
+            }
+        }
+
+        if (_curFireBallRechargeTime < _fireBallRechargeTime)
+        {
+            _curFireBallRechargeTime += Time.deltaTime;
         }
 
     }
@@ -94,6 +137,6 @@ public class fireState : MonoBehaviour
     void UIUpdate()
     {
         _mainAbilityUI.GetComponent<Image>().fillAmount = curFlameThrowerCharge / maxFlameThrowerCharge;
-
+        _secondaryAbilityUI.GetComponent<Image>().fillAmount = _curFireBallRechargeTime / _fireBallRechargeTime;
     }
 }

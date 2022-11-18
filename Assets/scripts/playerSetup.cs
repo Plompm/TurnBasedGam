@@ -6,6 +6,8 @@ public class playerSetup : MonoBehaviour
 {
 
     [SerializeField] public GameObject FlameThrower;
+    [SerializeField] public GameObject FireBall;
+
     [SerializeField] public GameObject[] UItoChange;
 
     [SerializeField] public Transform SpawnPosition;

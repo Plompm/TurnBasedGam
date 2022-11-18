@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlameThrower: {fileID: 2509324153290085305, guid: 4d3457ba61e8f494f8ed9405187b28a0, type: 3}
+  FireBall: {fileID: 9110123090419199088, guid: 5b2ee30ca82019546b82fd3112a307c2, type: 3}
   UItoChange:
   - {fileID: 1387430518074763712}
   - {fileID: 2303949171892147895}
