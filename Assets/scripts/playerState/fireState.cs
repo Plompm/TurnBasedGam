@@ -10,6 +10,7 @@ public class fireState : MonoBehaviour
     GameObject _mainAbilityUI;
     GameObject _secondaryAbilityUI;
     GameObject[] _UItoChange;
+    GameObject _UIhealth;
 
     GameObject _flameThrowerRef;
     GameObject _flameThrower;
@@ -27,6 +28,9 @@ public class fireState : MonoBehaviour
     float _curFireBallRechargeTime;
     float _fireBallRechargeTime = 2;
 
+    [SerializeField] float Health;
+    float maxHealth = 100;
+
     private void Awake()
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
@@ -37,6 +41,8 @@ public class fireState : MonoBehaviour
         enablingUI();
         _curFireBallRechargeTime = 0;
         curFlameThrowerCharge = 0;
+
+        Health = maxHealth;
 
         _spawnTransform = _playerSetup.SpawnPosition;
         
@@ -131,6 +137,9 @@ public class fireState : MonoBehaviour
     {
         _mainAbilityUI.GetComponent<Image>().fillAmount = curFlameThrowerCharge / maxFlameThrowerCharge;
         _secondaryAbilityUI.GetComponent<Image>().fillAmount = _curFireBallRechargeTime / _fireBallRechargeTime;
+
+        _UIhealth.GetComponent<Image>().fillAmount = Health / maxHealth;
+        Health = Mathf.Clamp(Health, 0, maxHealth);
     }
 
     void enablingUI()
@@ -142,10 +151,20 @@ public class fireState : MonoBehaviour
         _playerSetup.UIFireMA.SetActive(true);
         _playerSetup.UIFireSA.SetActive(true);
 
+        RectTransform topUIRect = _playerSetup.TopElementalUI[0].GetComponent<RectTransform>();
+        topUIRect.localScale = new Vector3(0.075f, 0.15f,1f);
+        topUIRect.position = new Vector3(topUIRect.position.x, topUIRect.position.y, topUIRect.position.z);
+        _playerSetup.TopElementalUI[1].GetComponent<Image>().fillAmount = 0;
+
         for (int i = 0; i < _UItoChange.Length; i++)
         {
             _UItoChange[i].GetComponent<Image>().color = Color.red;
         }
+
+        _UIhealth = _playerSetup.UIHealth;
+
+        _UIhealth.GetComponent<Image>().color = Color.red;
+        _UIhealth.GetComponent<Image>().fillAmount = 1;
 
     }
 }
