@@ -8,6 +8,8 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject FlameThrower;
     [SerializeField] public GameObject FireBall;
 
+    [SerializeField] public GameObject AirSlice;
+
     [SerializeField] public GameObject[] UItoChange;
 
     [SerializeField] public Transform SpawnPosition;
@@ -15,6 +17,8 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject UISecondaryAbility;
     [SerializeField] public GameObject UIFireMA;
     [SerializeField] public GameObject UIFireSA;
+    [SerializeField] public GameObject UIAirMA;
+    [SerializeField] public GameObject UIAirSA;
 
     [SerializeField] public GameObject[] TopElementalUI;
     [SerializeField] public GameObject UIHealth;
