@@ -13,5 +13,7 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public Transform SpawnPosition;
     [SerializeField] public GameObject UIMainAbility;
     [SerializeField] public GameObject UISecondaryAbility;
+    [SerializeField] public GameObject UIFireMA;
+    [SerializeField] public GameObject UIFireSA;
 
 }

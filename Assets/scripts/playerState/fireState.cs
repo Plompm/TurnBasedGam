@@ -34,18 +34,11 @@ public class fireState : MonoBehaviour
 
     void Start()
     {
-        _curFireBallRechargeTime = _fireBallRechargeTime;
-        curFlameThrowerCharge = maxFlameThrowerCharge;
-        _mainAbilityUI = _playerSetup.UIMainAbility;
-        _secondaryAbilityUI = _playerSetup.UISecondaryAbility;
+        enablingUI();
+        _curFireBallRechargeTime = 0;
+        curFlameThrowerCharge = 0;
 
-        _UItoChange = _playerSetup.UItoChange;
         _spawnTransform = _playerSetup.SpawnPosition;
-
-        for (int i = 0; i < _UItoChange.Length; i++)
-        {
-            _UItoChange[i].GetComponent<Image>().color = Color.red;
-        }
         
         _flameThrowerRef = _playerSetup.FlameThrower;
         _FireBallRef = _playerSetup.FireBall;
@@ -78,7 +71,7 @@ public class fireState : MonoBehaviour
                 _particleSystemFlameThrower.Play();
                 _flameThrowerOn = true;
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && _flameThrowerOn == true)
             {
                 _delayFlamerOn = true;
                 _delayTimer = Time.time + 1;
@@ -89,17 +82,17 @@ public class fireState : MonoBehaviour
 
             if (_flameThrowerOn == false)
             {
-                curFlameThrowerCharge += Time.deltaTime;
+                curFlameThrowerCharge -= Time.deltaTime;
                 curFlameThrowerCharge = Mathf.Clamp(curFlameThrowerCharge, 0, maxFlameThrowerCharge);
 
             }
             if (_flameThrowerOn == true)
             {
-                curFlameThrowerCharge -= Time.deltaTime;
+                curFlameThrowerCharge += Time.deltaTime;
                 curFlameThrowerCharge = Mathf.Clamp(curFlameThrowerCharge, 0, maxFlameThrowerCharge);
             }
 
-            if (curFlameThrowerCharge <= 0)
+            if (curFlameThrowerCharge >= maxFlameThrowerCharge)
             {
                 _delayFlamerOn = true;
                 _delayTimer = Time.time + 1;
@@ -120,16 +113,16 @@ public class fireState : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (_curFireBallRechargeTime >= _fireBallRechargeTime)
+            if (_curFireBallRechargeTime <= 0)
             {
                 Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
-                _curFireBallRechargeTime = 0;
+                _curFireBallRechargeTime = _fireBallRechargeTime;
             }
         }
 
-        if (_curFireBallRechargeTime < _fireBallRechargeTime)
+        if (_curFireBallRechargeTime > 0)
         {
-            _curFireBallRechargeTime += Time.deltaTime;
+            _curFireBallRechargeTime -= Time.deltaTime;
         }
 
     }
@@ -138,5 +131,21 @@ public class fireState : MonoBehaviour
     {
         _mainAbilityUI.GetComponent<Image>().fillAmount = curFlameThrowerCharge / maxFlameThrowerCharge;
         _secondaryAbilityUI.GetComponent<Image>().fillAmount = _curFireBallRechargeTime / _fireBallRechargeTime;
+    }
+
+    void enablingUI()
+    {
+        _mainAbilityUI = _playerSetup.UIMainAbility;
+        _secondaryAbilityUI = _playerSetup.UISecondaryAbility;
+
+        _UItoChange = _playerSetup.UItoChange;
+        _playerSetup.UIFireMA.SetActive(true);
+        _playerSetup.UIFireSA.SetActive(true);
+
+        for (int i = 0; i < _UItoChange.Length; i++)
+        {
+            _UItoChange[i].GetComponent<Image>().color = Color.red;
+        }
+
     }
 }
