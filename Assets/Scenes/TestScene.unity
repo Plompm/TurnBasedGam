@@ -453,6 +453,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3142401040713714602, guid: ac9fe7a6ae7b4904cb03b57bb6c23e6f, type: 3}
+      propertyPath: FlameThrower
+      value: 
+      objectReference: {fileID: 2509324153290085305, guid: 4d3457ba61e8f494f8ed9405187b28a0, type: 3}
     - target: {fileID: 3659899485949026811, guid: ac9fe7a6ae7b4904cb03b57bb6c23e6f, type: 3}
       propertyPath: m_Name
       value: player

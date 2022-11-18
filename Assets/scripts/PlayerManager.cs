@@ -8,8 +8,6 @@ public class PlayerManager : MonoBehaviour
     playerAction _givenState;
     GameObject _infoManager;
 
-    [SerializeField] public GameObject FlameThrower;
-
     void Start()
     {
         _givenState = GameObject.Find("infoManager").GetComponent<battleInfo>().PlayerInput;
