@@ -79,8 +79,6 @@ public class fireState : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0) && _flameThrowerOn == true)
             {
-                _delayFlamerOn = true;
-                _delayTimer = Time.time + 1;
                 _flameThrowerOn = false;
                 _flameThrower.GetComponent<CapsuleCollider>().enabled = false;
                 _particleSystemFlameThrower.Stop(true);

@@ -19,6 +19,8 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject UIFireSA;
     [SerializeField] public GameObject UIAirMA;
     [SerializeField] public GameObject UIAirSA;
+    [SerializeField] public GameObject UISecondAbilityinUse;
+
 
     [SerializeField] public GameObject[] TopElementalUI;
     [SerializeField] public GameObject UIHealth;

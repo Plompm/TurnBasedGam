@@ -11,6 +11,7 @@ public class airState : MonoBehaviour
     GameObject _secondaryAbilityUI;
     GameObject[] _UItoChange;
     GameObject _UIhealth;
+    GameObject _UIAbilityInUse;
 
     Transform _spawnTransform;
 
@@ -22,6 +23,11 @@ public class airState : MonoBehaviour
     float _curAirSliceRechargeTime;
     float _AirSliceRechargeTime = 0.25f;
 
+    float _maxBoostRechargeTime = 4f;
+    float _curBoostRechargeTime;
+    float _BoostTimeLimit = 2f;
+    float _BoostcurrentTime;
+    bool _canUseSecondaryAbility;
     private void Awake()
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
@@ -66,12 +72,32 @@ public class airState : MonoBehaviour
     }
 
     void MoveBoostFunc()
-    { 
-    
+    {
+        //
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (_canUseSecondaryAbility == true)
+            {
+                _canUseSecondaryAbility = false;
+                _BoostcurrentTime = _BoostTimeLimit;
+            }
+        }
+
+        if (_BoostcurrentTime > 0)
+        {
+            _BoostcurrentTime -= Time.deltaTime;
+        }
+
+        if (_BoostTimeLimit <= 0)
+        {
+            _curBoostRechargeTime -= Time.deltaTime;
+        }
     }
 
     void UIUpdate()
     {
+        _UIAbilityInUse.GetComponent<Image>().fillAmount = _BoostcurrentTime / _BoostTimeLimit;
+        _secondaryAbilityUI.GetComponent<Image>().fillAmount = _curBoostRechargeTime / _maxBoostRechargeTime;
         _mainAbilityUI.GetComponent<Image>().fillAmount = _curAirSliceRechargeTime / _AirSliceRechargeTime;
 
         _UIhealth.GetComponent<Image>().fillAmount = Health / maxHealth;
@@ -87,6 +113,8 @@ public class airState : MonoBehaviour
         _playerSetup.UIAirMA.SetActive(true);
         _playerSetup.UIAirSA.SetActive(true);
 
+
+
         RectTransform topUIRect = _playerSetup.TopElementalUI[2].GetComponent<RectTransform>();
         topUIRect.localScale = new Vector3(0.075f, 0.15f, 1f);
         topUIRect.position = new Vector3(topUIRect.position.x, topUIRect.position.y, topUIRect.position.z);
@@ -101,6 +129,8 @@ public class airState : MonoBehaviour
 
         _UIhealth.GetComponent<Image>().color = Color.white;
         _UIhealth.GetComponent<Image>().fillAmount = 1;
-
+        _UIAbilityInUse = _playerSetup.UISecondAbilityinUse;
+        _UIAbilityInUse.GetComponent<Image>().fillAmount = 0;
+        _secondaryAbilityUI.GetComponent<Image>().fillAmount = 0;
     }
 }
