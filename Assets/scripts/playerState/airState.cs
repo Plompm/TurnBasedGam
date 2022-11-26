@@ -23,14 +23,21 @@ public class airState : MonoBehaviour
     float _curAirSliceRechargeTime;
     float _AirSliceRechargeTime = 0.25f;
 
-    float _maxBoostRechargeTime = 4f;
+    float _maxBoostRechargeTime = 7f;
     float _curBoostRechargeTime;
-    float _BoostTimeLimit = 2f;
+    float _BoostTimeLimit = 5f;
     float _BoostcurrentTime;
     bool _canUseSecondaryAbility;
+
+    playerMovement _playerMovement;
+    float _startSpeed;
+    float _startJump;
     private void Awake()
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
+        _playerMovement = gameObject.GetComponent<playerMovement>();
+        _startSpeed = _playerMovement.speed;
+        _startJump = _playerMovement.jumpHeight;
     }
 
     void Start()
@@ -40,6 +47,7 @@ public class airState : MonoBehaviour
         _spawnTransform = _playerSetup.SpawnPosition;
         _AirSliceRef = _playerSetup.AirSlice;
         _curAirSliceRechargeTime = 0;
+        _canUseSecondaryAbility = true;
     }
 
     // Update is called once per frame
@@ -76,7 +84,7 @@ public class airState : MonoBehaviour
         //
         if (Input.GetMouseButtonDown(1))
         {
-            if (_canUseSecondaryAbility == true)
+            if (_canUseSecondaryAbility == true && _curBoostRechargeTime <= 0)
             {
                 _canUseSecondaryAbility = false;
                 _BoostcurrentTime = _BoostTimeLimit;
@@ -86,11 +94,25 @@ public class airState : MonoBehaviour
         if (_BoostcurrentTime > 0)
         {
             _BoostcurrentTime -= Time.deltaTime;
+            _playerMovement.speed = 30;
+            _playerMovement.jumpHeight = 15;
+        }
+        if (_BoostcurrentTime < 0)
+        {
+            _curBoostRechargeTime = _maxBoostRechargeTime;
+            _BoostcurrentTime = 0;
+            _playerMovement.speed = _startSpeed;
+            _playerMovement.jumpHeight = _startJump;
         }
 
-        if (_BoostTimeLimit <= 0)
+        if (_curBoostRechargeTime > 0)
         {
             _curBoostRechargeTime -= Time.deltaTime;
+        }
+        if (_curBoostRechargeTime < 0)
+        {
+            _canUseSecondaryAbility = true;
+            _curBoostRechargeTime = 0;
         }
     }
 
@@ -130,6 +152,7 @@ public class airState : MonoBehaviour
         _UIhealth.GetComponent<Image>().color = Color.white;
         _UIhealth.GetComponent<Image>().fillAmount = 1;
         _UIAbilityInUse = _playerSetup.UISecondAbilityinUse;
+        _UIAbilityInUse.SetActive(true);
         _UIAbilityInUse.GetComponent<Image>().fillAmount = 0;
         _secondaryAbilityUI.GetComponent<Image>().fillAmount = 0;
     }
