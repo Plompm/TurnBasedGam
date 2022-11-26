@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealth: 100
   PlayerHealth: 100
-  PlayerInput: 3
+  PlayerInput: 4
   AIInput: 0
 --- !u!4 &873808335
 Transform:
@@ -453,6 +453,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2971043981168217127, guid: ac9fe7a6ae7b4904cb03b57bb6c23e6f, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3142401040713714602, guid: ac9fe7a6ae7b4904cb03b57bb6c23e6f, type: 3}
       propertyPath: FlameThrower
       value: 
