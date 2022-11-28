@@ -16,6 +16,8 @@ public class earthState : MonoBehaviour
     Transform _spawnTransform;
 
     GameObject _earthWall;
+    GameObject _activeWall;
+
     GameObject _earthDisk;
 
     [SerializeField] float Health;
@@ -53,7 +55,18 @@ public class earthState : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(_earthWall, _spawnTransform.position, _spawnTransform.rotation);
+            bool justspawned = false;
+            if (_activeWall == null)
+            {
+                _activeWall = Instantiate(_earthWall, _spawnTransform.position, _spawnTransform.rotation);
+                justspawned = true;
+            }
+
+            if (_activeWall != null && justspawned == false)
+            {
+                _activeWall.GetComponent<earthWall>().OnThrow();
+                _activeWall = null;
+             }
         }
     }
 
