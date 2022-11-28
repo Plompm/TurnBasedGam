@@ -13,12 +13,14 @@ public class earthState : MonoBehaviour
     GameObject _UIhealth;
     GameObject _UIAbilityInUse;
 
-    Transform _spawnTransform;
+    Transform _wallSpawnTransform;
+    Transform _diskSpawnTransform;
 
     GameObject _earthWall;
     GameObject _activeWall;
 
     GameObject _earthDisk;
+    GameObject _activeDisk;
 
     [SerializeField] float Health;
     float maxHealth = 100;
@@ -34,7 +36,8 @@ public class earthState : MonoBehaviour
     void Start()
     {
         Health = maxHealth;
-        _spawnTransform = _playerSetup.EarthSpawnPosition;
+        _wallSpawnTransform = _playerSetup.EarthWallSpawnPosition;
+        _diskSpawnTransform = _playerSetup.EarthDiskSpawnPosition;
     }
     // Update is called once per frame
     void Update()
@@ -58,7 +61,7 @@ public class earthState : MonoBehaviour
             bool justspawned = false;
             if (_activeWall == null)
             {
-                _activeWall = Instantiate(_earthWall, _spawnTransform.position, _spawnTransform.rotation);
+                _activeWall = Instantiate(_earthWall, _wallSpawnTransform.position, _wallSpawnTransform.rotation);
                 justspawned = true;
             }
 
@@ -74,7 +77,18 @@ public class earthState : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            print("earth Disk");
+            bool justspawned = false;
+            if (_activeDisk == null)
+            {
+                _activeDisk = Instantiate(_earthDisk, _diskSpawnTransform.position, _diskSpawnTransform.rotation);
+                justspawned = true;
+            }
+
+            if (_activeDisk != null && justspawned == false)
+            {
+                _activeDisk.GetComponent<earthDisk>().OnThrow();
+                _activeDisk = null;
+            }
         }
     }
 

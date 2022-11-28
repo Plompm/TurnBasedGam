@@ -16,7 +16,8 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject[] UItoChange;
 
     [SerializeField] public Transform SpawnPosition;
-    [SerializeField] public Transform EarthSpawnPosition;
+    [SerializeField] public Transform EarthWallSpawnPosition;
+    [SerializeField] public Transform EarthDiskSpawnPosition;
     [SerializeField] public GameObject UIMainAbility;
     [SerializeField] public GameObject UISecondaryAbility;
     [SerializeField] public GameObject UIFireMA;
