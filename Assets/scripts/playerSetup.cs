@@ -10,9 +10,13 @@ public class playerSetup : MonoBehaviour
 
     [SerializeField] public GameObject AirSlice;
 
+    [SerializeField] public GameObject EarthWall;
+    [SerializeField] public GameObject EarthDisk;
+
     [SerializeField] public GameObject[] UItoChange;
 
     [SerializeField] public Transform SpawnPosition;
+    [SerializeField] public Transform EarthSpawnPosition;
     [SerializeField] public GameObject UIMainAbility;
     [SerializeField] public GameObject UISecondaryAbility;
     [SerializeField] public GameObject UIFireMA;

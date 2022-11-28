@@ -15,34 +15,57 @@ public class earthState : MonoBehaviour
 
     Transform _spawnTransform;
 
+    GameObject _earthWall;
+    GameObject _earthDisk;
+
     [SerializeField] float Health;
     float maxHealth = 100;
 
     private void Awake()
     {
+        _playerSetup = gameObject.GetComponent<playerSetup>();
         enablingUI();
+
+        _earthWall = _playerSetup.EarthWall;
+        _earthDisk = _playerSetup.EarthDisk;
     }
     void Start()
     {
         Health = maxHealth;
-        _spawnTransform = _playerSetup.SpawnPosition;
+        _spawnTransform = _playerSetup.EarthSpawnPosition;
     }
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
-        //primary Attack
-        if (Input.GetMouseButtonDown(0))
+        if (gameObject.GetComponent<playerMovement>().isGrounded == true)
         {
-            print("earth Wall");
+            //primary Attack
+            EarthWall();
+            //secondary Attack
+            EarthDisk();
         }
-        //secondary Attack
-        if (Input.GetMouseButtonDown(1))
-        {
 
-        }
 
         UIUpdate();
     }
+
+    void EarthWall()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(_earthWall, _spawnTransform.position, _spawnTransform.rotation);
+        }
+    }
+
+    void EarthDisk()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            print("earth Disk");
+        }
+    }
+
+
     void UIUpdate()
     {
         _UIhealth.GetComponent<Image>().fillAmount = Health / maxHealth;
@@ -51,7 +74,6 @@ public class earthState : MonoBehaviour
 
     void enablingUI()
     {
-        _playerSetup = gameObject.GetComponent<playerSetup>();
         _mainAbilityUI = _playerSetup.UIMainAbility;
         _secondaryAbilityUI = _playerSetup.UISecondaryAbility;
 

@@ -12,7 +12,7 @@ public class playerMovement : MonoBehaviour
     public float speed = 12;
     public float jumpHeight = 5f;
 
-    bool isGrounded;
+    public bool isGrounded;
     Vector3 velocity;
     float gravity = -9.8f;
 

@@ -425,7 +425,7 @@ RectTransform:
   - {fileID: 2938530421088779555}
   - {fileID: 6218790452456170762}
   m_Father: {fileID: 3659899485949026815}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1065,6 +1065,7 @@ Transform:
   - {fileID: 3659899487098246289}
   - {fileID: 3659899486664308489}
   - {fileID: 3659899487956216910}
+  - {fileID: 1539436681119943727}
   - {fileID: 5067391937057677878}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1120,6 +1121,7 @@ MonoBehaviour:
     m_Bits: 64
   speed: 12
   jumpHeight: 5
+  isGrounded: 0
 --- !u!114 &5239190254301693389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,6 +1149,8 @@ MonoBehaviour:
   FlameThrower: {fileID: 2509324153290085305, guid: 4d3457ba61e8f494f8ed9405187b28a0, type: 3}
   FireBall: {fileID: 9110123090419199088, guid: 5b2ee30ca82019546b82fd3112a307c2, type: 3}
   AirSlice: {fileID: 424275740075999023, guid: 773a1f68584afcb4ea94f1bd6d35e831, type: 3}
+  EarthWall: {fileID: 6790334114217227547, guid: d20110c4fba53424895931018fed3dfd, type: 3}
+  EarthDisk: {fileID: 0}
   UItoChange:
   - {fileID: 1387430518074763712}
   - {fileID: 2303949171892147895}
@@ -1155,6 +1159,7 @@ MonoBehaviour:
   - {fileID: 7338639683362831375}
   - {fileID: 4058612497021423559}
   SpawnPosition: {fileID: 8033085445232650623}
+  EarthSpawnPosition: {fileID: 1539436681119943727}
   UIMainAbility: {fileID: 9177208649915320635}
   UISecondaryAbility: {fileID: 7444342882444887153}
   UIFireMA: {fileID: 5566729088107095036}
@@ -2002,6 +2007,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5835075415712630249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539436681119943727}
+  m_Layer: 0
+  m_Name: EarthSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1539436681119943727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835075415712630249}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3659899485949026815}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6249870773805179890
 GameObject:
   m_ObjectHideFlags: 0
