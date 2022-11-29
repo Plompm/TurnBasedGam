@@ -28,6 +28,8 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject UISecondAbilityinUse;
     [SerializeField] public GameObject UIEarthMA;
     [SerializeField] public GameObject UIEarthSA;
+    [SerializeField] public GameObject UIWaterMA;
+    [SerializeField] public GameObject UIWaterSA;
 
     [SerializeField] public GameObject[] TopElementalUI;
     [SerializeField] public GameObject UIHealth;

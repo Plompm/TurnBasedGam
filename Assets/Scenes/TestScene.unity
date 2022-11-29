@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealth: 100
   PlayerHealth: 100
-  PlayerInput: 4
+  PlayerInput: 5
   AIInput: 0
 --- !u!4 &873808335
 Transform:
