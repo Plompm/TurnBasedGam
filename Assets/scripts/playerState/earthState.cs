@@ -7,20 +7,19 @@ public class earthState : MonoBehaviour
 {
     playerSetup _playerSetup;
 
-    GameObject _mainAbilityUI;
-    GameObject _secondaryAbilityUI;
+    public GameObject _mainAbilityUI;
+    public GameObject _secondaryAbilityUI;
     GameObject[] _UItoChange;
     GameObject _UIhealth;
-    GameObject _UIAbilityInUse;
 
     Transform _wallSpawnTransform;
     Transform _diskSpawnTransform;
 
     GameObject _earthWall;
-    GameObject _activeWall;
+    public GameObject _activeWall;
 
     GameObject _earthDisk;
-    GameObject _activeDisk;
+    public GameObject _activeDisk;
 
     [SerializeField] float Health;
     float maxHealth = 100;
@@ -62,6 +61,7 @@ public class earthState : MonoBehaviour
             if (_activeWall == null)
             {
                 _activeWall = Instantiate(_earthWall, _wallSpawnTransform.position, _wallSpawnTransform.rotation);
+                _activeWall.GetComponent<earthWall>().getSpawner(gameObject);
                 justspawned = true;
             }
 
@@ -69,7 +69,7 @@ public class earthState : MonoBehaviour
             {
                 _activeWall.GetComponent<earthWall>().OnThrow();
                 _activeWall = null;
-             }
+            }
         }
     }
 
@@ -81,6 +81,7 @@ public class earthState : MonoBehaviour
             if (_activeDisk == null)
             {
                 _activeDisk = Instantiate(_earthDisk, _diskSpawnTransform.position, _diskSpawnTransform.rotation);
+                _activeDisk.GetComponent<earthDisk>().getSpawner(gameObject);
                 justspawned = true;
             }
 
@@ -97,6 +98,22 @@ public class earthState : MonoBehaviour
     {
         _UIhealth.GetComponent<Image>().fillAmount = Health / maxHealth;
         Health = Mathf.Clamp(Health, 0, maxHealth);
+        if (_activeWall == null)
+        {
+            _mainAbilityUI.GetComponent<Image>().fillAmount = 0f;
+        }
+        else
+        {
+            _mainAbilityUI.GetComponent<Image>().fillAmount = 1f;
+        }
+        if (_activeDisk == null)
+        {
+            _secondaryAbilityUI.GetComponent<Image>().fillAmount = 0f;
+        }
+        else
+        {
+            _secondaryAbilityUI.GetComponent<Image>().fillAmount = 1f;
+        }
     }
 
     void enablingUI()
@@ -127,5 +144,7 @@ public class earthState : MonoBehaviour
 
         _mainAbilityUI.GetComponent<Image>().fillAmount = 0;
         _secondaryAbilityUI.GetComponent<Image>().fillAmount = 0;
+        _mainAbilityUI.GetComponent<Image>().color = Color.red;
+        _secondaryAbilityUI.GetComponent<Image>().color = Color.red;
     }
 }

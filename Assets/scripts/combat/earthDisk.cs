@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class earthDisk : MonoBehaviour
 {
     Rigidbody _rb;
-    bool _throwWall;
+    bool _throwDisk;
     float _timer;
+    bool _canControll;
+    GameObject _spawner;
+    bool _justLeftRange;
 
     private void Awake()
     {
         _rb = gameObject.GetComponent<Rigidbody>();
-        _throwWall = false;
+        _throwDisk = false;
+        _canControll = true;
+        _justLeftRange = false;
     }
 
     private void Start()
@@ -23,10 +29,22 @@ public class earthDisk : MonoBehaviour
     private void Update()
     {
         DestroyByTime();
-        transform.rotation = Camera.main.transform.rotation;
+        if (_canControll == true)
+        {
+            transform.rotation = Camera.main.transform.rotation;
+        }
         if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 12)
         {
-            print("out of range");
+            _canControll = false;
+            if (_justLeftRange == false)
+            {
+                _spawner.GetComponent<earthState>()._activeDisk = null;
+                _justLeftRange = true;
+            }
+            if (_throwDisk == false)
+            {
+                _rb.useGravity = true;
+            }
         }
     }
 
@@ -38,20 +56,23 @@ public class earthDisk : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.y <= -0.2f)
+        if (transform.position.y <= -0.2f && _canControll == true)
         {
             _rb.MovePosition(transform.position + transform.up * Time.deltaTime * 12);
         }
 
-        if (_throwWall == true)
+        if (_throwDisk == true)
         {
             _rb.MovePosition(transform.position + transform.forward * Time.deltaTime * 60);
         }
     }
     public void OnThrow()
     {
-        _rb.useGravity = true;
-        _throwWall = true;
+        if (_canControll == true)
+        {
+            _rb.useGravity = true;
+            _throwDisk = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,8 +83,8 @@ public class earthDisk : MonoBehaviour
         }
     }
 
-    void outOfRange()
-    { 
-        
+    public void getSpawner(GameObject spawner)
+    {
+        _spawner = spawner;
     }
 }
