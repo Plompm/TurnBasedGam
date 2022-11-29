@@ -9,6 +9,8 @@ public class earthState : MonoBehaviour
 
     public GameObject _mainAbilityUI;
     public GameObject _secondaryAbilityUI;
+    Image _mainCoolDownFill;
+    Image _secondaryCoolDownFill;
     GameObject[] _UItoChange;
     GameObject _UIhealth;
 
@@ -20,6 +22,12 @@ public class earthState : MonoBehaviour
 
     GameObject _earthDisk;
     public GameObject _activeDisk;
+
+    float _curWallRechargeTime;
+    float _maxWallRechargeTime = 0.5f;
+
+    float _curDiskRechargeTime;
+    float _maxDiskRechargeTime = 0.25f;
 
     [SerializeField] float Health;
     float maxHealth = 100;
@@ -55,7 +63,7 @@ public class earthState : MonoBehaviour
 
     void EarthWall()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _curWallRechargeTime <= 0)
         {
             bool justspawned = false;
             if (_activeWall == null)
@@ -69,13 +77,18 @@ public class earthState : MonoBehaviour
             {
                 _activeWall.GetComponent<earthWall>().OnThrow();
                 _activeWall = null;
+                _curWallRechargeTime = _maxWallRechargeTime;
             }
+        }
+        if (_curWallRechargeTime > 0)
+        {
+            _curWallRechargeTime -= Time.deltaTime;
         }
     }
 
     void EarthDisk()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && _curDiskRechargeTime <= 0)
         {
             bool justspawned = false;
             if (_activeDisk == null)
@@ -89,7 +102,13 @@ public class earthState : MonoBehaviour
             {
                 _activeDisk.GetComponent<earthDisk>().OnThrow();
                 _activeDisk = null;
+                _curDiskRechargeTime = _maxDiskRechargeTime;
             }
+        }
+
+        if (_curDiskRechargeTime > 0)
+        {
+            _curDiskRechargeTime -= Time.deltaTime;
         }
     }
 
@@ -98,6 +117,10 @@ public class earthState : MonoBehaviour
     {
         _UIhealth.GetComponent<Image>().fillAmount = Health / maxHealth;
         Health = Mathf.Clamp(Health, 0, maxHealth);
+
+        _mainCoolDownFill.fillAmount = _curWallRechargeTime / _maxWallRechargeTime;
+        _secondaryCoolDownFill.fillAmount = _curDiskRechargeTime / _maxDiskRechargeTime;
+
         if (_activeWall == null)
         {
             _mainAbilityUI.GetComponent<Image>().fillAmount = 0f;
@@ -120,6 +143,12 @@ public class earthState : MonoBehaviour
     {
         _mainAbilityUI = _playerSetup.UIMainAbility;
         _secondaryAbilityUI = _playerSetup.UISecondaryAbility;
+
+        _playerSetup.UIMainAbilityInUse.SetActive(true);
+        _playerSetup.UISecondAbilityinUse.SetActive(true);
+
+        _mainCoolDownFill = _playerSetup.UIMainAbilityInUse.GetComponent<Image>();
+        _secondaryCoolDownFill = _playerSetup.UISecondAbilityinUse.GetComponent<Image>();
 
         _UItoChange = _playerSetup.UItoChange;
         _playerSetup.UIEarthMA.SetActive(true);
@@ -146,5 +175,11 @@ public class earthState : MonoBehaviour
         _secondaryAbilityUI.GetComponent<Image>().fillAmount = 0;
         _mainAbilityUI.GetComponent<Image>().color = Color.red;
         _secondaryAbilityUI.GetComponent<Image>().color = Color.red;
+
+        _mainCoolDownFill.color = new Color(0,0,0,0.5f);
+        _secondaryCoolDownFill.color = new Color(0, 0, 0, 0.5f);
+
+        _mainCoolDownFill.fillAmount = 0;
+        _secondaryCoolDownFill.fillAmount = 0;
     }
 }
