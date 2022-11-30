@@ -13,6 +13,9 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject EarthWall;
     [SerializeField] public GameObject EarthDisk;
 
+    [SerializeField] public GameObject WaterJet;
+    [SerializeField] public GameObject IceCicle;
+
     [SerializeField] public GameObject[] UItoChange;
 
     [SerializeField] public Transform SpawnPosition;

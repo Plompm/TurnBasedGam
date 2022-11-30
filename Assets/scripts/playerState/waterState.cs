@@ -12,6 +12,14 @@ public class waterState : MonoBehaviour
     GameObject[] _UItoChange;
     GameObject _UIhealth;
 
+    bool _waterShooting;
+
+    GameObject _waterJet;
+    GameObject _ActiveWaterJet;
+    ParticleSystem _vfxWaterJet;
+    GameObject _iceCicle;
+
+    Transform _spawnTransform;
 
     [SerializeField] float Health;
     float maxHealth = 100;
@@ -24,6 +32,10 @@ public class waterState : MonoBehaviour
     private void Start()
     {
         Health = 100;
+        _spawnTransform = _playerSetup.SpawnPosition;
+        _waterJet = _playerSetup.WaterJet;
+        _iceCicle = _playerSetup.IceCicle;
+        _waterShooting = false;
     }
 
     // Update is called once per frame
@@ -39,9 +51,28 @@ public class waterState : MonoBehaviour
 
     void WaterJet()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
-            print("water SHoot");
+            bool justSpawned = false;
+            if (_waterShooting == false)
+            {
+                _ActiveWaterJet = Instantiate(_waterJet, _spawnTransform.position, _spawnTransform.rotation, _spawnTransform);
+                _vfxWaterJet = _ActiveWaterJet.GetComponent<ParticleSystem>();
+                justSpawned = true;
+                _waterShooting = true;
+            }
+            if (justSpawned == false && _waterShooting == true)
+            {
+                _waterShooting = false;
+                _ActiveWaterJet.transform.parent = null;
+                _ActiveWaterJet.GetComponent<waterJet>().Freeze = true;
+                var trail = _vfxWaterJet.trails;
+                trail.mode = ParticleSystemTrailMode.Ribbon;
+                _vfxWaterJet.Pause();
+                var COL = _vfxWaterJet.colorOverLifetime;
+                COL.color = new Color(0,.75f,1,0.5f);
+            }
         }
     }
 
