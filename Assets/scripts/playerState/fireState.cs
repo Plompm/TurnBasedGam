@@ -17,7 +17,7 @@ public class fireState : MonoBehaviour
     Transform _spawnTransform;
     ParticleSystem _particleSystemFlameThrower;
 
-    float maxFlameThrowerCharge = 1;
+    float maxFlameThrowerCharge = 3;
     float curFlameThrowerCharge;
     float _delayTimer;
     bool _delayFlamerOn;

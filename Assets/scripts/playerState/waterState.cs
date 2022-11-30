@@ -13,11 +13,14 @@ public class waterState : MonoBehaviour
     GameObject _UIhealth;
 
     bool _waterShooting;
+    bool _waterJetCoolingDown;
 
     GameObject _waterJet;
     GameObject _ActiveWaterJet;
-    ParticleSystem _vfxWaterJet;
     GameObject _iceCicle;
+
+    float _curWaterJetTime;
+    float _maxWaterJetTime = 2f;
 
     Transform _spawnTransform;
 
@@ -36,6 +39,7 @@ public class waterState : MonoBehaviour
         _waterJet = _playerSetup.WaterJet;
         _iceCicle = _playerSetup.IceCicle;
         _waterShooting = false;
+        _waterJetCoolingDown = false;
     }
 
     // Update is called once per frame
@@ -52,27 +56,32 @@ public class waterState : MonoBehaviour
     void WaterJet()
     {
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _waterJetCoolingDown == false)
         {
             bool justSpawned = false;
             if (_waterShooting == false)
             {
                 _ActiveWaterJet = Instantiate(_waterJet, _spawnTransform.position, _spawnTransform.rotation, _spawnTransform);
-                _vfxWaterJet = _ActiveWaterJet.GetComponent<ParticleSystem>();
                 justSpawned = true;
                 _waterShooting = true;
+                _mainAbilityUI.GetComponent<Image>().fillAmount = 1;
             }
             if (justSpawned == false && _waterShooting == true)
             {
                 _waterShooting = false;
                 _ActiveWaterJet.transform.parent = null;
-                _ActiveWaterJet.GetComponent<waterJet>().Freeze = true;
-                var trail = _vfxWaterJet.trails;
-                trail.mode = ParticleSystemTrailMode.Ribbon;
-                _vfxWaterJet.Pause();
-                var COL = _vfxWaterJet.colorOverLifetime;
-                COL.color = new Color(0,.75f,1,0.5f);
+                _ActiveWaterJet.GetComponent<waterJet>().FREEZE();
+                _curWaterJetTime = _maxWaterJetTime;
+                _waterJetCoolingDown = true;
             }
+        }
+        if (_curWaterJetTime >= 0)
+        {
+            _curWaterJetTime -= Time.deltaTime;
+        }
+        if (_curWaterJetTime <= 0)
+        {
+            _waterJetCoolingDown = false;
         }
     }
 
@@ -88,6 +97,9 @@ public class waterState : MonoBehaviour
     {
         _UIhealth.GetComponent<Image>().fillAmount = Health / maxHealth;
         Health = Mathf.Clamp(Health, 0, maxHealth);
+
+        if(_waterShooting == false)
+            _mainAbilityUI.GetComponent<Image>().fillAmount = _curWaterJetTime / _maxWaterJetTime;
     }
 
     void enablingUI()
