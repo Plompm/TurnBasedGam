@@ -8,6 +8,7 @@ public class earthDisk : MonoBehaviour
     Rigidbody _rb;
     bool _throwDisk;
     float _timer;
+    bool _timerStarted;
     bool _canControll;
     GameObject _spawner;
     bool _justLeftRange;
@@ -18,12 +19,7 @@ public class earthDisk : MonoBehaviour
         _throwDisk = false;
         _canControll = true;
         _justLeftRange = false;
-    }
-
-    private void Start()
-    {
-
-        _timer = Time.time + 5f;
+        _timerStarted = false;
     }
 
     private void Update()
@@ -35,11 +31,13 @@ public class earthDisk : MonoBehaviour
         }
         if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 12)
         {
+            _timerStarted = true;
             _canControll = false;
             if (_justLeftRange == false)
             {
                 _spawner.GetComponent<earthState>()._activeDisk = null;
                 _justLeftRange = true;
+                _timer = Time.time + 3f;
             }
             if (_throwDisk == false)
             {
@@ -50,7 +48,7 @@ public class earthDisk : MonoBehaviour
 
     void DestroyByTime()
     {
-        if (_timer <= Time.time)
+        if (_timer <= Time.time && _timerStarted == true)
             Destroy(gameObject);
     }
 
@@ -73,6 +71,8 @@ public class earthDisk : MonoBehaviour
             _rb.useGravity = true;
             _throwDisk = true;
         }
+        _timerStarted = true;
+        _timer = Time.time + 5f;
     }
 
     private void OnTriggerEnter(Collider other)

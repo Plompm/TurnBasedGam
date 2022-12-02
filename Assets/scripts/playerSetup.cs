@@ -16,6 +16,8 @@ public class playerSetup : MonoBehaviour
     [SerializeField] public GameObject WaterJet;
     [SerializeField] public GameObject IceCicle;
 
+    [SerializeField] public Transform[] IceCicleSpawnPos;
+
     [SerializeField] public GameObject[] UItoChange;
 
     [SerializeField] public Transform SpawnPosition;

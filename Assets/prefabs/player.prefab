@@ -1228,6 +1228,12 @@ MonoBehaviour:
   AirSlice: {fileID: 424275740075999023, guid: 773a1f68584afcb4ea94f1bd6d35e831, type: 3}
   EarthWall: {fileID: 6790334114217227547, guid: d20110c4fba53424895931018fed3dfd, type: 3}
   EarthDisk: {fileID: 2880769461343274634, guid: b6e01b9f11c842740b5765f57b87aada, type: 3}
+  WaterJet: {fileID: 2509324153290085305, guid: 6c3d37b6824099e409c99e5888240904, type: 3}
+  IceCicle: {fileID: 3835856295965426109, guid: 5baa4ac7d216caa4ca9996e21699f972, type: 3}
+  IceCicleSpawnPos:
+  - {fileID: 5974233707163458201}
+  - {fileID: 4279049824151194437}
+  - {fileID: 8808966026963352220}
   UItoChange:
   - {fileID: 1387430518074763712}
   - {fileID: 2303949171892147895}
@@ -1375,6 +1381,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8033085445232650623}
+  - {fileID: 5974233707163458201}
+  - {fileID: 4279049824151194437}
+  - {fileID: 8808966026963352220}
   m_Father: {fileID: 3659899485949026815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2514,6 +2523,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84dd6f70cc9a5540a270d27a6630eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7062248974531696130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8808966026963352220}
+  m_Layer: 0
+  m_Name: IceCicle 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8808966026963352220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7062248974531696130}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3659899487098246289}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7338639683362831375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,6 +2866,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8210047883002891216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5974233707163458201}
+  m_Layer: 0
+  m_Name: IceCicle 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5974233707163458201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8210047883002891216}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3659899487098246289}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8542528027745777326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2978,6 +3049,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8694441526490375782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4279049824151194437}
+  m_Layer: 0
+  m_Name: IceCicle 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4279049824151194437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694441526490375782}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.75, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3659899487098246289}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8774613572406771661
 GameObject:
   m_ObjectHideFlags: 0
