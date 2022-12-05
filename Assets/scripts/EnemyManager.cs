@@ -22,14 +22,12 @@ public class EnemyManager : MonoBehaviour
             gameObject.AddComponent<EnemyEarth>();
         if (_givenState == enemyAction.WaterAttack)
             gameObject.AddComponent<EnemyWater>();
-        if (_givenState == enemyAction.Block)
-            gameObject.AddComponent<EnemyBlock>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(_player.transform);
+
     }
 
     public void takeDamage(float damageDealt)

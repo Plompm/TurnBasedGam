@@ -47,10 +47,5 @@ public class AIStateDecider : MonoBehaviour
         {
             _infoManager.GetComponent<battleInfo>().AIInput = enemyAction.WaterAttack;
         }
-        if (num == 4)
-        {
-            _infoManager.GetComponent<battleInfo>().AIInput = enemyAction.Block;
-        }
-
     }
 }

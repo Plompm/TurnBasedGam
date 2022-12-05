@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum playerAction { Run, Block, FireAttack, AirAttack, EarthAttack, WaterAttack }
-public enum enemyAction { Block, FireAttack, AirAttack, EarthAttack, WaterAttack }
+public enum playerAction {FireAttack, AirAttack, EarthAttack, WaterAttack }
+public enum enemyAction {FireAttack, AirAttack, EarthAttack, WaterAttack }
 
 public class battleInfo : MonoBehaviour
 {

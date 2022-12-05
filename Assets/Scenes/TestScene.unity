@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealth: 100
   PlayerHealth: 100
-  PlayerInput: 5
+  PlayerInput: 2
   AIInput: 0
 --- !u!4 &873808335
 Transform:
@@ -349,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 303331158405201645, guid: b8e17280c7e054d4e8e0bf675f3b39f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5003092
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 303331158405201645, guid: b8e17280c7e054d4e8e0bf675f3b39f9, type: 3}
       propertyPath: m_LocalPosition.z

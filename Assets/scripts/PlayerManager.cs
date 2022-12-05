@@ -21,8 +21,6 @@ public class PlayerManager : MonoBehaviour
             gameObject.AddComponent<earthState>();
         if (_givenState == playerAction.WaterAttack)
             gameObject.AddComponent<waterState>();
-        if (_givenState == playerAction.Run)
-            gameObject.AddComponent<RunState>();
     }
 
 
