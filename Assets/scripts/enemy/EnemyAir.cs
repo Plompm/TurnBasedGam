@@ -28,12 +28,15 @@ public class EnemyAir : MonoBehaviour
     float _startJump;
 
     float _airSliceRandomWaitTime;
+    float _windBoastRandomWaitTime;
 
     private void Awake()
     {
         _enemySetup = gameObject.GetComponent<enemySetup>();
         _AIMovement = gameObject.GetComponent<EnemyAI>();
         //adjust jump and speed here
+        _startSpeed = _AIMovement.AINavMeshAgent.speed;
+        _startJump = _AIMovement.JumpHeight;
     }
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,7 @@ public class EnemyAir : MonoBehaviour
         _curAirSliceRechargeTime = 0;
         setRandomAirSliceTime();
         _canUseSecondaryAbility = true;
+        _startJump = _AIMovement.JumpHeight;
     }
 
     // Update is called once per frame
@@ -68,7 +72,7 @@ public class EnemyAir : MonoBehaviour
     void MoveBoostFunc()
     {
         //
-        if (Input.GetMouseButtonDown(1))
+        if (_windBoastRandomWaitTime <= Time.time)
         {
             if (_canUseSecondaryAbility == true && _curBoostRechargeTime <= 0)
             {
@@ -81,12 +85,14 @@ public class EnemyAir : MonoBehaviour
         {
             _BoostcurrentTime -= Time.deltaTime;
             //changeMovement
+            _AIMovement.AINavMeshAgent.speed = 20;
         }
         if (_BoostcurrentTime < 0)
         {
             _curBoostRechargeTime = _maxBoostRechargeTime;
             _BoostcurrentTime = 0;
             //changeMovement
+            _AIMovement.AINavMeshAgent.speed = _startSpeed;
         }
 
         if (_curBoostRechargeTime > 0)
@@ -103,5 +109,9 @@ public class EnemyAir : MonoBehaviour
     void setRandomAirSliceTime()
     {
         _airSliceRandomWaitTime = Time.time + Random.Range(0.5f, 2);
+    }
+    void setRandomWindBoostTime()
+    { 
+        _windBoastRandomWaitTime = Time.time + Random.Range(7f, 15f);
     }
 }

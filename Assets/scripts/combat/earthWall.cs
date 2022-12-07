@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class earthWall : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class earthWall : MonoBehaviour
     bool _canControll;
     bool _justLeftRange;
     GameObject _spawner;
+    NavMeshObstacle _NavOb;
 
     private void Awake()
     {
@@ -20,6 +22,8 @@ public class earthWall : MonoBehaviour
         _canControll = true;
         _justLeftRange = false;
         _timerStarted = false;
+        _NavOb = gameObject.GetComponent<NavMeshObstacle>();
+        _NavOb.enabled = true;
     }
 
     private void Start()
@@ -70,6 +74,7 @@ public class earthWall : MonoBehaviour
         _timer = Time.time + 2f;
         transform.rotation = Camera.main.gameObject.transform.parent.rotation;
         print(Camera.main.gameObject.transform.parent.name);
+        _NavOb.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
