@@ -155,7 +155,7 @@ MonoBehaviour:
   EnemyHealth: 100
   PlayerHealth: 100
   PlayerInput: 2
-  AIInput: 0
+  AIInput: 1
 --- !u!4 &873808335
 Transform:
   m_ObjectHideFlags: 0

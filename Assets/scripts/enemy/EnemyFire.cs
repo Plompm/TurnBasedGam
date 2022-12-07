@@ -19,7 +19,6 @@ public class EnemyFire : MonoBehaviour
 
     GameObject _FireBallRef;
 
-    float _curFireBallRechargeTime;
     float _fireBallRechargeTime = 2;
 
     [SerializeField] float Health;
@@ -49,7 +48,6 @@ public class EnemyFire : MonoBehaviour
         if (_fireBallRandomWaitTime <= Time.time)
         {
             Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
-            _curFireBallRechargeTime = _fireBallRechargeTime;
             setRandomTime();
         }
     }
