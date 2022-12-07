@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1886777927610135101}
   - component: {fileID: 6277689495756732239}
   - component: {fileID: 1729281403461239454}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8574277772872447065}
   - component: {fileID: 5918048908214294998}
   - component: {fileID: 2086096290445681239}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EarthWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790334114217227547}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4.08, y: 5.23, z: 1}

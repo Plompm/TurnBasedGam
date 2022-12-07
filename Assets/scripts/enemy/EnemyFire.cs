@@ -18,6 +18,7 @@ public class EnemyFire : MonoBehaviour
     bool _flameThrowerOn;
 
     GameObject _FireBallRef;
+    GameObject _activeFireBall;
 
     float _fireBallRechargeTime = 2;
 
@@ -47,7 +48,8 @@ public class EnemyFire : MonoBehaviour
     {
         if (_fireBallRandomWaitTime <= Time.time)
         {
-            Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
+            _activeFireBall = Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
+            _activeFireBall.GetComponent<FireBall>().getSpawner(gameObject);
             setRandomTime();
         }
     }
@@ -60,6 +62,7 @@ public class EnemyFire : MonoBehaviour
                 if (_flameThrower == null)
                 {
                     _flameThrower = Instantiate(_flameThrowerRef, _spawnTransform.position, _spawnTransform.rotation, _spawnTransform);
+                    _flameThrower.GetComponent<flameThrower>().getSpawner(gameObject);
                     _particleSystemFlameThrower = _flameThrower.GetComponent<ParticleSystem>();
                 }
 

@@ -104,9 +104,59 @@ public class earthDisk : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        //FireBall
+        if (other.gameObject.layer == 8)
         {
-            print("CRUMBLE");
+            //vfx
+            //audio
+            Destroy(gameObject);
+        }
+
+        //earthWall
+        if (other.gameObject.layer == 10)
+        {
+            //vfx
+            //audio
+            Destroy(gameObject);
+        }
+        //earthDisk
+        if (other.gameObject.layer == 11)
+        {
+            //vfx
+            //audio
+            Destroy(gameObject);
+        }
+        //only hurt enemy
+        if (_spawner.tag == "Player")
+        {
+            if (other.tag == "Enemy")
+            {
+                //vfx
+                //audio
+                Destroy(gameObject);
+            }
+        }
+
+        //only hurt player
+        if (_spawner.tag == "Enemy")
+        {
+            if (other.tag == "Player")
+            {
+                //vfx
+                //audio
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        //walls
+        if (other.gameObject.layer == 10)
+        {
+            //vfx
+            //audio
+            Destroy(gameObject);
         }
     }
 

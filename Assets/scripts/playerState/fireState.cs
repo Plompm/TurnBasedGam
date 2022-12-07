@@ -24,7 +24,8 @@ public class fireState : MonoBehaviour
     bool _flameThrowerOn;
 
     GameObject _FireBallRef;
-    
+    GameObject _activeFireBall;
+
     float _curFireBallRechargeTime;
     float _fireBallRechargeTime = 2;
 
@@ -70,6 +71,7 @@ public class fireState : MonoBehaviour
                 if (_flameThrower == null)
                 {
                     _flameThrower = Instantiate(_flameThrowerRef, _spawnTransform.position, _spawnTransform.rotation, _spawnTransform);
+                    _flameThrower.GetComponent<flameThrower>().getSpawner(gameObject);
                     _particleSystemFlameThrower = _flameThrower.GetComponent<ParticleSystem>();
                 }
 
@@ -119,7 +121,8 @@ public class fireState : MonoBehaviour
         {
             if (_curFireBallRechargeTime <= 0)
             {
-                Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
+                _activeFireBall = Instantiate(_FireBallRef, _spawnTransform.position, _spawnTransform.rotation);
+                _activeFireBall.GetComponent<FireBall>().getSpawner(gameObject);
                 _curFireBallRechargeTime = _fireBallRechargeTime;
             }
         }

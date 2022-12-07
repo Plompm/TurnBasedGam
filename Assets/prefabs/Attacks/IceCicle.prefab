@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5963825192413907558}
   - component: {fileID: 2879493283726647076}
   - component: {fileID: 7616150373011586883}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: IceCicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8513424388201257645, guid: 6c5265f7ed0245e4e8b8d692a4e6f1a8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -6067185528594298527, guid: 6c5265f7ed0245e4e8b8d692a4e6f1a8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -146,6 +150,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6c5265f7ed0245e4e8b8d692a4e6f1a8, type: 3}
       propertyPath: m_Name
       value: art
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c5265f7ed0245e4e8b8d692a4e6f1a8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5265f7ed0245e4e8b8d692a4e6f1a8, type: 3}

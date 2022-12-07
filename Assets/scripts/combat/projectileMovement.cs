@@ -35,12 +35,4 @@ public class projectileMovement : Movement
         if (_timer <= Time.time)
             Destroy(gameObject);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            print("BOOM");
-        }
-    }
 }

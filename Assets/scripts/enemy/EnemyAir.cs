@@ -13,6 +13,7 @@ public class EnemyAir : MonoBehaviour
     float maxHealth = 100;
 
     GameObject _AirSliceRef;
+    GameObject _activeAirSlice;
 
     float _curAirSliceRechargeTime;
     float _AirSliceRechargeTime = 0.25f;
@@ -63,7 +64,8 @@ public class EnemyAir : MonoBehaviour
     {
         if (_airSliceRandomWaitTime <= Time.time)
         {
-            Instantiate(_AirSliceRef, _spawnTransform.position, _spawnTransform.rotation);
+            _activeAirSlice = Instantiate(_AirSliceRef, _spawnTransform.position, _spawnTransform.rotation);
+            _activeAirSlice.GetComponent<AirSlice>().getSpawner(gameObject);
             _curAirSliceRechargeTime = _AirSliceRechargeTime;
             setRandomAirSliceTime();
         }

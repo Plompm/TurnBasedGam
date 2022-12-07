@@ -78,6 +78,7 @@ public class waterState : MonoBehaviour
                 justSpawned = true;
                 _waterShooting = true;
                 _curWaterJetTime = _maxWaterJetTime;
+                _ActiveWaterJet.GetComponent<waterJet>().getSpawner(gameObject);
             }
             if (justSpawned == false && _waterShooting == true)
             {
@@ -122,6 +123,7 @@ public class waterState : MonoBehaviour
             _iceCicleSpawned[0] = true;
             _ActiveIceCicles[0] = Instantiate(_iceCicle, _iceCicleSpawnPos[0].position, _iceCicleSpawnPos[0].rotation);
             _ActiveIceCicles[0].GetComponent<iceCicle>().OnSpawn(_iceCicleSpawnPos[0]);
+            _ActiveIceCicles[0].GetComponent<iceCicle>().getSpawner(gameObject);
         }
         if (_IceCicleCharge >= 0.8f && _iceCicleSpawned[1] == false)
         {
@@ -129,12 +131,14 @@ public class waterState : MonoBehaviour
             _ActiveIceCicles[1] = Instantiate(_iceCicle, _iceCicleSpawnPos[1].position, _iceCicleSpawnPos[1].rotation);
             _ActiveIceCicles[1].transform.localScale = new Vector3(_ActiveIceCicles[1].transform.localScale.x * -1, _ActiveIceCicles[1].transform.localScale.y, _ActiveIceCicles[1].transform.localScale.z);
             _ActiveIceCicles[1].GetComponent<iceCicle>().OnSpawn(_iceCicleSpawnPos[1]);
+            _ActiveIceCicles[1].GetComponent<iceCicle>().getSpawner(gameObject);
         }
         if (_IceCicleCharge >= 1.5f && _iceCicleSpawned[2] == false)
         {
             _iceCicleSpawned[2] = true;
             _ActiveIceCicles[2] = Instantiate(_iceCicle, _iceCicleSpawnPos[2].position, _iceCicleSpawnPos[2].rotation);
             _ActiveIceCicles[2].GetComponent<iceCicle>().OnSpawn(_iceCicleSpawnPos[2]);
+            _ActiveIceCicles[2].GetComponent<iceCicle>().getSpawner(gameObject);
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -144,7 +148,10 @@ public class waterState : MonoBehaviour
             {
                 if (_iceCicleSpawned[i] == true)
                 {
-                    _ActiveIceCicles[i].GetComponent<iceCicle>().OnShot();
+                    if (_ActiveIceCicles[i] != null)
+                    {
+                        _ActiveIceCicles[i].GetComponent<iceCicle>().OnShot();
+                    }
                 }
                 _iceCicleSpawned[i] = false;
             }

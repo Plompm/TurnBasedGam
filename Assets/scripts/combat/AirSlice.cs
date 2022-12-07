@@ -2,49 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class iceCicle : MonoBehaviour
+public class AirSlice : projectileMovement
 {
-    bool _hasBeenShot;
-    Rigidbody _rb;
-    float _timer;
-    bool _timerStarted;
     GameObject _spawner;
-
-    private void Awake()
-    {
-        _hasBeenShot = false;
-        _rb = gameObject.GetComponent<Rigidbody>();
-        _timerStarted = false;
-    }
-
-    public void OnSpawn(Transform parent)
-    {
-        transform.parent = parent;
-    }
-    public void OnShot()
-    {
-        transform.parent = null;
-        _hasBeenShot = true;
-        _timerStarted = true;
-        _timer = Time.time + 3;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_hasBeenShot == true)
-        {
-            _rb.MovePosition(transform.position + transform.forward * Time.deltaTime * 50);
-        }
-    }
-
-    private void Update()
-    {
-        if (_timerStarted == true && _timer <= Time.time)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         //Flame Thrower
@@ -62,6 +22,14 @@ public class iceCicle : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //airSlice
+        if (other.gameObject.layer == 9)
+        {
+            //vfx
+            //audio
+            Destroy(gameObject);
+        }
+
         //earthWall
         if (other.gameObject.layer == 10)
         {
@@ -71,6 +39,14 @@ public class iceCicle : MonoBehaviour
         }
         //earthDisk
         if (other.gameObject.layer == 11)
+        {
+            //vfx
+            //audio
+            Destroy(gameObject);
+        }
+
+        //waterJet
+        if (other.gameObject.layer == 12)
         {
             //vfx
             //audio

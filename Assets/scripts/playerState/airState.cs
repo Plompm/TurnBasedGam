@@ -19,6 +19,7 @@ public class airState : MonoBehaviour
     float maxHealth = 100;
 
     GameObject _AirSliceRef;
+    GameObject _activeAirSlice;
 
     float _curAirSliceRechargeTime;
     float _AirSliceRechargeTime = 0.25f;
@@ -68,7 +69,8 @@ public class airState : MonoBehaviour
         {
             if (_curAirSliceRechargeTime <= 0)
             {
-                Instantiate(_AirSliceRef, _spawnTransform.position, _spawnTransform.rotation);
+                _activeAirSlice = Instantiate(_AirSliceRef, _spawnTransform.position, _spawnTransform.rotation);
+                _activeAirSlice.GetComponent<AirSlice>().getSpawner(gameObject);
                 _curAirSliceRechargeTime = _AirSliceRechargeTime;
             }
         }

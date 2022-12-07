@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2880769459914950416}
   - component: {fileID: 2880769459914950418}
   - component: {fileID: 2880769459914950419}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2416595587142941613}
   - component: {fileID: 9093339565058900269}
   - component: {fileID: 3159794654310621050}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: earthDisk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
