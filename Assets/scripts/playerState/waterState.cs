@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using SoundSystem;
 
 public class waterState : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class waterState : MonoBehaviour
 
     public float Health;
     float maxHealth = 100;
+
+    [SerializeField] SFXEvent _summon;
+    [SerializeField] SFXEvent _send;
 
     void Awake()
     {

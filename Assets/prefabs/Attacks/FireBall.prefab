@@ -4859,3 +4859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 0.8
+  Explosion: {fileID: 418730920751208982, guid: 4f8120213053a37478c821eaa57776ef, type: 3}
+  _SFXexplosion: {fileID: 11400000, guid: 1152323680775f042b1c1016cb344e40, type: 2}
+  _summon: {fileID: 11400000, guid: fdc88851e6db4844b96e1dbc7aae5e7b, type: 2}

@@ -159,3 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba50281a4f05e248978efa3ce662015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _diskShatter: {fileID: 4719346540891745241, guid: 896b38c69f3b63148810417b5e854d42, type: 3}
+  _summon: {fileID: 11400000, guid: bc3d927c11954844cb41ff17fc3420a8, type: 2}
+  _break: {fileID: 11400000, guid: 4ec3e505e1fa8144d8093b1ea904c5ba, type: 2}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
 
 public class iceCicle : MonoBehaviour
 {
@@ -10,12 +11,17 @@ public class iceCicle : MonoBehaviour
     float _timer;
     bool _timerStarted;
     GameObject _spawner;
+    [SerializeField] GameObject _iceShatter;
+    [SerializeField] SFXEvent _summon;
+    [SerializeField] SFXEvent _break;
+    [SerializeField] SFXEvent _send;
 
     private void Awake()
     {
         _hasBeenShot = false;
         _rb = gameObject.GetComponent<Rigidbody>();
         _timerStarted = false;
+        _summon.Play();
     }
 
     public void OnSpawn(Transform parent)
@@ -24,6 +30,7 @@ public class iceCicle : MonoBehaviour
     }
     public void OnShot()
     {
+        _send.Play();
         transform.parent = null;
         _hasBeenShot = true;
         _timerStarted = true;
@@ -51,37 +58,37 @@ public class iceCicle : MonoBehaviour
         //Flame Thrower
         if (other.gameObject.layer == 7)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
         //FireBall
         if (other.gameObject.layer == 8)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
 
         //earthWall
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
         //earthDisk
         if (other.gameObject.layer == 11)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
         //IceCicles
         if (other.gameObject.layer == 13)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
 
@@ -90,8 +97,8 @@ public class iceCicle : MonoBehaviour
         {
             if (other.tag == "Enemy")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_iceShatter, gameObject, false);
+                _break.Play();
                 findEnemyType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -102,8 +109,8 @@ public class iceCicle : MonoBehaviour
         {
             if (other.tag == "Player")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_iceShatter, gameObject, false);
+                _break.Play();
                 findPlayerType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -115,15 +122,15 @@ public class iceCicle : MonoBehaviour
         //walls
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
         //ground
-        if (other.gameObject.layer == 10)
+        if (other.gameObject.layer == 6)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_iceShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using SoundSystem;
 
 public class earthWall : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class earthWall : MonoBehaviour
     bool _justLeftRange;
     GameObject _spawner;
     NavMeshObstacle _NavOb;
-
+    [SerializeField] GameObject _wallShatter;
+    [SerializeField] SFXEvent _summon;
+    [SerializeField] SFXEvent _break;
     private void Awake()
     {
         _rb = gameObject.GetComponent<Rigidbody>();
@@ -26,11 +29,11 @@ public class earthWall : MonoBehaviour
         _NavOb = gameObject.GetComponent<NavMeshObstacle>();
         _NavOb.enabled = true;
     }
-
     private void Start()
     {
 
         _timer = Time.time + 5f;
+        _summon.Play();
     }
 
     private void Update()
@@ -106,8 +109,15 @@ public class earthWall : MonoBehaviour
         //earthWall
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_wallShatter, gameObject, false);
+            _break.Play();
+            Destroy(gameObject);
+        }
+        //FireBall
+        if (other.gameObject.layer == 8)
+        {
+            Utility.SpawnParticles(_wallShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
 
@@ -116,8 +126,8 @@ public class earthWall : MonoBehaviour
         {
             if (other.tag == "Enemy")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_wallShatter, gameObject, false);
+                _break.Play();
                 findEnemyType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -128,8 +138,8 @@ public class earthWall : MonoBehaviour
         {
             if (other.tag == "Player")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_wallShatter, gameObject, false);
+                _break.Play();
                 findPlayerType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -141,8 +151,15 @@ public class earthWall : MonoBehaviour
         //walls
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_wallShatter, gameObject, false);
+            _break.Play();
+            Destroy(gameObject);
+        }
+        //FireBall
+        if (other.gameObject.layer == 8)
+        {
+            Utility.SpawnParticles(_wallShatter, gameObject, false);
+            _break.Play();
             Destroy(gameObject);
         }
         //only hurt enemy
@@ -150,8 +167,8 @@ public class earthWall : MonoBehaviour
         {
             if (other.gameObject.tag == "Enemy")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_wallShatter, gameObject, false);
+                _break.Play();
                 findEnemyType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -162,8 +179,8 @@ public class earthWall : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_wallShatter, gameObject, false);
+                _break.Play();
                 findPlayerType(other.gameObject);
                 Destroy(gameObject);
             }

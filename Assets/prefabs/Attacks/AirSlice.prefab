@@ -4858,3 +4858,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeed: 1
+  _airBurst: {fileID: 1255895929173579597, guid: 10df0e0d46131b241beb7935fc595709, type: 3}
+  _summon: {fileID: 11400000, guid: 72a1216dec3cc614abde6fd020c3973e, type: 2}
+  _hit: {fileID: 11400000, guid: 3a5637ac96dc51c4782d4d11550b97bf, type: 2}

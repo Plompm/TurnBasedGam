@@ -1,63 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
 
 public class AirSlice : projectileMovement
 {
     GameObject _spawner;
     float _damage = 15;
+    [SerializeField] GameObject _airBurst;
+    [SerializeField] SFXEvent _summon;
+    [SerializeField] SFXEvent _hit;
     private void OnTriggerEnter(Collider other)
     {
         //Flame Thrower
         if (other.gameObject.layer == 7)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
         //FireBall
         if (other.gameObject.layer == 8)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
 
         //airSlice
         if (other.gameObject.layer == 9)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
 
         //earthWall
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
         //earthDisk
         if (other.gameObject.layer == 11)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
 
         //waterJet
         if (other.gameObject.layer == 12)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
         //IceCicles
         if (other.gameObject.layer == 13)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
 
@@ -66,8 +70,8 @@ public class AirSlice : projectileMovement
         {
             if (other.tag == "Enemy")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_airBurst, gameObject, false);
+                _hit.Play();
                 findEnemyType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -78,8 +82,8 @@ public class AirSlice : projectileMovement
         {
             if (other.tag == "Player")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(_airBurst, gameObject, false);
+                _hit.Play();
                 findPlayerType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -91,21 +95,22 @@ public class AirSlice : projectileMovement
         //walls
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
         //ground
-        if (other.gameObject.layer == 10)
+        if (other.gameObject.layer == 6)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(_airBurst, gameObject, false);
+            _hit.Play();
             Destroy(gameObject);
         }
     }
 
     public void getSpawner(GameObject spawner)
     {
+        _summon.Play();
         _spawner = spawner;
     }
 

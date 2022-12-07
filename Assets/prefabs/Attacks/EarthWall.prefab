@@ -144,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312c66199d190524989550eae006eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wallShatter: {fileID: 3702982164027757197, guid: a6c9dd96b6ef26943b294653c182b6a0, type: 3}
+  _summon: {fileID: 11400000, guid: bc3d927c11954844cb41ff17fc3420a8, type: 2}
+  _break: {fileID: 11400000, guid: c879adc4ca4d23e4a8d476c24da88fb4, type: 2}
 --- !u!54 &5918048908214294998
 Rigidbody:
   m_ObjectHideFlags: 0

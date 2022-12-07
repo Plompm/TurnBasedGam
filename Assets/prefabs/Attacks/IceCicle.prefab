@@ -76,6 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa8c1c7e53c44947b50669f642ff7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _iceShatter: {fileID: 2021340960941006490, guid: 6f6ee529fc526d14fa27d0876adf408e, type: 3}
+  _summon: {fileID: 11400000, guid: 5023d5fce9c5efe4b8edc20dd9dafd53, type: 2}
+  _break: {fileID: 11400000, guid: 109ece0a09ef23748a1f7cffdd0d8de2, type: 2}
+  _send: {fileID: 11400000, guid: 3b71c35fa67db6e40aed956124852b43, type: 2}
 --- !u!1001 &3841057577442393732
 PrefabInstance:
   m_ObjectHideFlags: 0

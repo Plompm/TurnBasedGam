@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SoundSystem;
+
 
 public class FireBall : projectileMovement
 {
     GameObject _spawner;
     float _damage = 20;
+    [SerializeField]  GameObject Explosion;
+    [SerializeField] SFXEvent _SFXexplosion;
+    [SerializeField] SFXEvent _summon;
+
     private void OnTriggerEnter(Collider other)
     {
         //FireBall
         if (other.gameObject.layer == 8)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(Explosion, gameObject, false);
+            _SFXexplosion.Play();
             Destroy(gameObject);
         }
 
@@ -25,23 +31,23 @@ public class FireBall : projectileMovement
         //earthWall
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(Explosion, gameObject, false);
+            _SFXexplosion.Play();
             Destroy(gameObject);
         }
         //earthDisk
         if (other.gameObject.layer == 11)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(Explosion, gameObject, false);
+            _SFXexplosion.Play();
             Destroy(gameObject);
         }
 
         //waterJet
         if (other.gameObject.layer == 12)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(Explosion, gameObject, false);
+            _SFXexplosion.Play();
             Destroy(gameObject);
         }
 
@@ -50,8 +56,8 @@ public class FireBall : projectileMovement
         {
             if (other.tag == "Enemy")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(Explosion, gameObject, false);
+                _SFXexplosion.Play();
                 findEnemyType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -62,8 +68,8 @@ public class FireBall : projectileMovement
         {
             if (other.tag == "Player")
             {
-                //vfx
-                //audio
+                Utility.SpawnParticles(Explosion, gameObject, false);
+                _SFXexplosion.Play();
                 findPlayerType(other.gameObject);
                 Destroy(gameObject);
             }
@@ -75,20 +81,21 @@ public class FireBall : projectileMovement
         //walls
         if (other.gameObject.layer == 10)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(Explosion, gameObject, false);
+            _SFXexplosion.Play();
             Destroy(gameObject);
         }
         //ground
-        if (other.gameObject.layer == 10)
+        if (other.gameObject.layer == 6)
         {
-            //vfx
-            //audio
+            Utility.SpawnParticles(Explosion, gameObject, false);
+            _SFXexplosion.Play();
             Destroy(gameObject);
         }
     }
     public void getSpawner(GameObject spawner)
     {
+        _summon.Play();
         _spawner = spawner;
     }
 

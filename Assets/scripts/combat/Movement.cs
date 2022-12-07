@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using SoundSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] protected float _maxSpeed = .25f;
