@@ -12,7 +12,7 @@ public class loadMainMenu : ButtonBase
         _thisButton.onClick.AddListener(mainMenuLoad);
     }
 
-    void mainMenuLoad()
+    public void mainMenuLoad()
     {
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
