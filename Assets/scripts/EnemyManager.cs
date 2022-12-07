@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    enemyAction _givenState;
+    public enemyAction GivenState;
     GameObject _player;
     GameObject _infoManager;
     // Start is called before the first frame update
@@ -13,14 +13,14 @@ public class EnemyManager : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _infoManager = GameObject.Find("infoManager");
 
-        _givenState = GameObject.Find("infoManager").GetComponent<battleInfo>().AIInput;
-        if (_givenState == enemyAction.FireAttack)
+        GivenState = GameObject.Find("infoManager").GetComponent<battleInfo>().AIInput;
+        if (GivenState == enemyAction.FireAttack)
             gameObject.AddComponent<EnemyFire>();
-        if (_givenState == enemyAction.AirAttack)
+        if (GivenState == enemyAction.AirAttack)
             gameObject.AddComponent<EnemyAir>();
-        if (_givenState == enemyAction.EarthAttack)
+        if (GivenState == enemyAction.EarthAttack)
             gameObject.AddComponent<EnemyEarth>();
-        if (_givenState == enemyAction.WaterAttack)
+        if (GivenState == enemyAction.WaterAttack)
             gameObject.AddComponent<EnemyWater>();
     }
 

@@ -87,7 +87,6 @@ public class waterState : MonoBehaviour
                 _ActiveWaterJet = null;
                 _curWaterJetTime = _maxWaterJetTime;
                 _waterJetCoolingDown = true;
-                _iceCicle = _playerSetup.IceCicle;
             }
             _justSpawned = justSpawned;
         }

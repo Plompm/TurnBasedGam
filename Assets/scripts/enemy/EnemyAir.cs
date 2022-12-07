@@ -86,6 +86,7 @@ public class EnemyAir : MonoBehaviour
             _BoostcurrentTime -= Time.deltaTime;
             //changeMovement
             _AIMovement.AINavMeshAgent.speed = 20;
+            _AIMovement.JumpHeight = 12;
         }
         if (_BoostcurrentTime < 0)
         {
@@ -93,6 +94,7 @@ public class EnemyAir : MonoBehaviour
             _BoostcurrentTime = 0;
             //changeMovement
             _AIMovement.AINavMeshAgent.speed = _startSpeed;
+            _AIMovement.JumpHeight = _startJump;
         }
 
         if (_curBoostRechargeTime > 0)

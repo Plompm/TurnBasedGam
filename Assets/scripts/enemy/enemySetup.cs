@@ -21,6 +21,6 @@ public class enemySetup : MonoBehaviour
     [SerializeField] public Transform SpawnPosition;
     [SerializeField] public Transform EarthWallSpawnPosition;
     [SerializeField] public Transform EarthDiskSpawnPosition;
-
+    [SerializeField] public Transform AimAngle;
     [SerializeField] public GameObject UIHealth;
 }

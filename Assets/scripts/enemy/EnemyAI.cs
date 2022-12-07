@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
+    enemyAction _enemyState;
+
     [SerializeField] Transform groundCheck;
     float groundDistance = 0.38f;
     [SerializeField] LayerMask groundMask;
@@ -17,7 +19,7 @@ public class EnemyAI : MonoBehaviour
 
     float _randomJumpTime;
     bool _justJumped;
-    bool isGrounded;
+    public bool isGrounded;
     float _jumpTimer;
     // Start is called before the first frame update
     private void Awake()
@@ -34,6 +36,8 @@ public class EnemyAI : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         setRandomJumpTime();
         _justJumped = false;
+        _enemyState = GameObject.Find("infoManager").GetComponent<battleInfo>().AIInput;
+
     }
 
     // Update is called once per frame
@@ -46,7 +50,10 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        enemyJump();
+        if (_enemyState != enemyAction.EarthAttack)
+        {
+            enemyJump();
+        }
     }
     void bodyFacePlayer()
     {

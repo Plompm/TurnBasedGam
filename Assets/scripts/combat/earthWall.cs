@@ -35,16 +35,32 @@ public class earthWall : MonoBehaviour
     private void Update()
     {
         DestroyByTime();
-        if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 8 && _throwWall == false)
+        if (_spawner.tag == "Player")
         {
-            _rb.useGravity = true;
-            _canControll = false;
-            if (_justLeftRange == false)
+            if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 8 && _throwWall == false)
             {
-                _spawner.GetComponent<earthState>()._activeWall = null;
-                _justLeftRange = true;
-                _timerStarted = true;
-                _timer = Time.time + 2f;
+                _rb.useGravity = true;
+                _canControll = false;
+                if (_justLeftRange == false)
+                {
+                    _justLeftRange = true;
+                    _timerStarted = true;
+                    _timer = Time.time + 2f;
+                }
+            }
+        }
+        if (_spawner.tag == "Enemy")
+        {
+            if (Vector3.Distance(_spawner.transform.position, transform.position) >= 12 && _throwWall == false)
+            {
+                _rb.useGravity = true;
+                _canControll = false;
+                if (_justLeftRange == false)
+                {
+                    _justLeftRange = true;
+                    _timerStarted = true;
+                    _timer = Time.time + 2f;
+                }
             }
         }
     }
@@ -72,8 +88,14 @@ public class earthWall : MonoBehaviour
         _throwWall = true;
         _timerStarted = true;
         _timer = Time.time + 2f;
-        transform.rotation = Camera.main.gameObject.transform.parent.rotation;
-        print(Camera.main.gameObject.transform.parent.name);
+        if (_spawner.tag == "Player")
+        {
+            transform.rotation = Camera.main.gameObject.transform.parent.rotation;
+        }
+        if (_spawner.tag == "Enemy")
+        {
+            transform.rotation = _spawner.transform.rotation;
+        }
         _NavOb.enabled = false;
     }
 

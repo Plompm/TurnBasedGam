@@ -25,23 +25,46 @@ public class earthDisk : MonoBehaviour
     private void Update()
     {
         DestroyByTime();
-        if (_canControll == true)
+        if (_spawner.tag == "Player")
         {
-            transform.rotation = Camera.main.transform.rotation;
-        }
-        if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 12)
-        {
-            _timerStarted = true;
-            _canControll = false;
-            if (_justLeftRange == false)
+            if (_canControll == true)
             {
-                _spawner.GetComponent<earthState>()._activeDisk = null;
-                _justLeftRange = true;
-                _timer = Time.time + 3f;
+                transform.rotation = Camera.main.transform.rotation;
             }
-            if (_throwDisk == false)
+            if (Vector3.Distance(Camera.main.transform.position, transform.position) >= 12)
             {
-                _rb.useGravity = true;
+                _timerStarted = true;
+                _canControll = false;
+                if (_justLeftRange == false)
+                {
+                    _justLeftRange = true;
+                    _timer = Time.time + 3f;
+                }
+                if (_throwDisk == false)
+                {
+                    _rb.useGravity = true;
+                }
+            }
+        }
+        if (_spawner.tag == "Enemy")
+        {
+            if (_canControll == true)
+            {
+                transform.rotation = _spawner.GetComponent<enemySetup>().AimAngle.rotation;
+            }
+            if (Vector3.Distance(transform.position, transform.position) >= 15)
+            {
+                _timerStarted = true;
+                _canControll = false;
+                if (_justLeftRange == false)
+                {
+                    _justLeftRange = true;
+                    _timer = Time.time + 3f;
+                }
+                if (_throwDisk == false)
+                {
+                    _rb.useGravity = true;
+                }
             }
         }
     }
@@ -70,6 +93,10 @@ public class earthDisk : MonoBehaviour
         {
             _rb.useGravity = true;
             _throwDisk = true;
+            if (_spawner.tag == "Enemy")
+            {
+                transform.LookAt(_spawner.GetComponent<EnemyAI>().Player.transform);
+            }
         }
         _timerStarted = true;
         _timer = Time.time + 5f;
