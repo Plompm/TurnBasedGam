@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class waterState : MonoBehaviour
 {
     playerSetup _playerSetup;
-
+    battleInfo _battleinfo;
     public GameObject _mainAbilityUI;
     public GameObject _secondaryAbilityUI;
     GameObject[] _UItoChange;
@@ -30,17 +30,18 @@ public class waterState : MonoBehaviour
 
     Transform _spawnTransform;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     void Awake()
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
+        _battleinfo = gameObject.GetComponent<PlayerManager>().InfoManager.GetComponent<battleInfo>();
         enablingUI();
     }
     private void Start()
     {
-        Health = 100;
+        Health = _battleinfo.PlayerWaterHealth;
         _spawnTransform = _playerSetup.SpawnPosition;
         _waterJet = _playerSetup.WaterJet;
         _iceCicle = _playerSetup.IceCicle;

@@ -142,6 +142,27 @@ public class earthWall : MonoBehaviour
             //audio
             Destroy(gameObject);
         }
+        //only hurt enemy
+        if (_spawner.tag == "Player")
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                //vfx
+                //audio
+                Destroy(gameObject);
+            }
+        }
+
+        //only hurt player
+        if (_spawner.tag == "Enemy")
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                //vfx
+                //audio
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)

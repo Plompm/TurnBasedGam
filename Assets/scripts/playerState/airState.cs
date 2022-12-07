@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class airState : MonoBehaviour
 {
     playerSetup _playerSetup;
+    battleInfo _battleinfo;
 
     GameObject _mainAbilityUI;
     GameObject _secondaryAbilityUI;
@@ -15,7 +16,7 @@ public class airState : MonoBehaviour
 
     Transform _spawnTransform;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     GameObject _AirSliceRef;
@@ -37,6 +38,7 @@ public class airState : MonoBehaviour
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
         _playerMovement = gameObject.GetComponent<playerMovement>();
+        _battleinfo = gameObject.GetComponent<PlayerManager>().InfoManager.GetComponent<battleInfo>();
         _startSpeed = _playerMovement.speed;
         _startJump = _playerMovement.jumpHeight;
     }
@@ -44,7 +46,7 @@ public class airState : MonoBehaviour
     void Start()
     {
         enablingUI();
-        Health = maxHealth;
+        Health = _battleinfo.PlayerAirHealth;
         _spawnTransform = _playerSetup.SpawnPosition;
         _AirSliceRef = _playerSetup.AirSlice;
         _curAirSliceRechargeTime = 0;

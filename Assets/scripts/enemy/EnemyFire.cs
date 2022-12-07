@@ -6,6 +6,8 @@ public class EnemyFire : MonoBehaviour
 {
     GameObject _player;
     enemySetup _enemySetup;
+    battleInfo _battleinfo;
+
     GameObject _flameThrowerRef;
     GameObject _flameThrower;
     Transform _spawnTransform;
@@ -22,7 +24,7 @@ public class EnemyFire : MonoBehaviour
 
     float _fireBallRechargeTime = 2;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     float _fireBallRandomWaitTime;
@@ -30,7 +32,9 @@ public class EnemyFire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _battleinfo = gameObject.GetComponent<EnemyManager>().InfoManager.GetComponent<battleInfo>();
         _enemySetup = gameObject.GetComponent<enemySetup>();
+        Health = _battleinfo.EnemyFireHealth;
         _flameThrowerRef = _enemySetup.FlameThrower;
         _FireBallRef = _enemySetup.FireBall;
         _spawnTransform = _enemySetup.SpawnPosition;

@@ -6,10 +6,11 @@ public class EnemyAir : MonoBehaviour
 {
 
     enemySetup _enemySetup;
+    battleInfo _battleinfo;
 
     Transform _spawnTransform;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     GameObject _AirSliceRef;
@@ -34,6 +35,7 @@ public class EnemyAir : MonoBehaviour
     private void Awake()
     {
         _enemySetup = gameObject.GetComponent<enemySetup>();
+        _battleinfo = gameObject.GetComponent<EnemyManager>().InfoManager.GetComponent<battleInfo>();
         _AIMovement = gameObject.GetComponent<EnemyAI>();
         //adjust jump and speed here
         _startSpeed = _AIMovement.AINavMeshAgent.speed;
@@ -42,7 +44,7 @@ public class EnemyAir : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Health = maxHealth;
+        Health = _battleinfo.EnemyAirHealth;
         _spawnTransform = _enemySetup.SpawnPosition;
         _AirSliceRef = _enemySetup.AirSlice;
         _curAirSliceRechargeTime = 0;

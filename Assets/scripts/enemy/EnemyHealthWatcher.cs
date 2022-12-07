@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunState : MonoBehaviour
+public class EnemyHealthWatcher : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,15 +13,6 @@ public class RunState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //primary Attack
-        if (Input.GetMouseButtonDown(0))
-        {
-
-        }
-        //secondary Attack
-        if (Input.GetMouseButtonDown(1))
-        {
-
-        }
+        
     }
 }

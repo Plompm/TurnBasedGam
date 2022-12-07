@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyEarth : MonoBehaviour
 {
     enemySetup _enemySetup;
+    battleInfo _battleinfo;
 
     Transform _wallSpawnTransform;
     Transform _diskSpawnTransform;
@@ -21,7 +22,7 @@ public class EnemyEarth : MonoBehaviour
     float _curDiskRechargeTime;
     float _maxDiskRechargeTime = 0.25f;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     float _wallRandomWaitTime;
@@ -33,7 +34,7 @@ public class EnemyEarth : MonoBehaviour
     private void Awake()
     {
         _enemySetup = gameObject.GetComponent<enemySetup>();
-
+        _battleinfo = gameObject.GetComponent<EnemyManager>().InfoManager.GetComponent<battleInfo>();
         _earthWall = _enemySetup.EarthWall;
         _earthDisk = _enemySetup.EarthDisk;
         _diskOnFirstAction = true;
@@ -41,7 +42,7 @@ public class EnemyEarth : MonoBehaviour
     }
     void Start()
     {
-        Health = maxHealth;
+        Health = _battleinfo.EnemyEarthHealth;
         _wallSpawnTransform = _enemySetup.EarthWallSpawnPosition;
         _diskSpawnTransform = _enemySetup.EarthDiskSpawnPosition;
         _isGrounded = gameObject.GetComponent<EnemyAI>().isGrounded;

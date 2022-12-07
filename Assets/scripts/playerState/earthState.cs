@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class earthState : MonoBehaviour
 {
     playerSetup _playerSetup;
+    battleInfo _battleinfo;
 
     public GameObject _mainAbilityUI;
     public GameObject _secondaryAbilityUI;
@@ -29,12 +30,13 @@ public class earthState : MonoBehaviour
     float _curDiskRechargeTime;
     float _maxDiskRechargeTime = 0.25f;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     private void Awake()
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
+        _battleinfo = gameObject.GetComponent<PlayerManager>().InfoManager.GetComponent<battleInfo>();
         enablingUI();
 
         _earthWall = _playerSetup.EarthWall;
@@ -42,7 +44,7 @@ public class earthState : MonoBehaviour
     }
     void Start()
     {
-        Health = maxHealth;
+        Health = _battleinfo.PlayerEarthHealth;
         _wallSpawnTransform = _playerSetup.EarthWallSpawnPosition;
         _diskSpawnTransform = _playerSetup.EarthDiskSpawnPosition;
     }

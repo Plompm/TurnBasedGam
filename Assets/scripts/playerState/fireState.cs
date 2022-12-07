@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class fireState : MonoBehaviour
 {
     playerSetup _playerSetup;
+    battleInfo _battleinfo;
 
     GameObject _mainAbilityUI;
     GameObject _secondaryAbilityUI;
@@ -29,12 +30,13 @@ public class fireState : MonoBehaviour
     float _curFireBallRechargeTime;
     float _fireBallRechargeTime = 2;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     private void Awake()
     {
         _playerSetup = gameObject.GetComponent<playerSetup>();
+        _battleinfo = gameObject.GetComponent<PlayerManager>().InfoManager.GetComponent<battleInfo>();
     }
 
     void Start()
@@ -43,7 +45,7 @@ public class fireState : MonoBehaviour
         _curFireBallRechargeTime = 0;
         curFlameThrowerCharge = 0;
 
-        Health = maxHealth;
+        Health = _battleinfo.PlayerFireHealth;
 
         _spawnTransform = _playerSetup.SpawnPosition;
         

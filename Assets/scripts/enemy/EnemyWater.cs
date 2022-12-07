@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyWater : MonoBehaviour
 {
     enemySetup _enemySetup;
+    battleInfo _battleinfo;
 
     bool _waterShooting;
     bool _waterJetCoolingDown;
@@ -25,7 +26,7 @@ public class EnemyWater : MonoBehaviour
 
     Transform _spawnTransform;
 
-    [SerializeField] float Health;
+    public float Health;
     float maxHealth = 100;
 
     float _waterJetRandomWaitTime;
@@ -37,10 +38,11 @@ public class EnemyWater : MonoBehaviour
     void Awake()
     {
         _enemySetup = gameObject.GetComponent<enemySetup>();
+        _battleinfo = gameObject.GetComponent<EnemyManager>().InfoManager.GetComponent<battleInfo>();
     }
     private void Start()
     {
-        Health = 100;
+        Health = _battleinfo.EnemyWaterHealth;
         _spawnTransform = _enemySetup.SpawnPosition;
         _waterJet = _enemySetup.WaterJet;
         _iceCicle = _enemySetup.IceCicle;
